@@ -16,6 +16,7 @@ The online document versions of each library we used in this study are shown as 
 - [PyTorch](https://github.com/pytorch/pytorch/tree/main/docs): 2.2.0
 - [TensorFlow](https://github.com/tensorflow/tensorflow): 2.16.0
 
+The API documents are public assessed online.
 
 ## Knowledge Graph Server
 [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) 
