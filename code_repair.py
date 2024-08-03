@@ -6,7 +6,7 @@ from util import *
 def load_option(setting_name, model):
     option = {}
     filter_out = []
-    if setting_name == 'stderr+code_search(prompt)+conversation':
+    if setting_name == 'Code_Search':
         option = {
             'code_search': True,
             'code_search_query_type': 'prompt',
@@ -24,24 +24,7 @@ def load_option(setting_name, model):
             'classifier': False,
             'small_experiment': True
         }
-    elif setting_name == 'stderr+fl+conversation':
-        option = {
-            'code_search': False,
-            'conversation': True,
-            'baseline': False,
-            'model': model,
-            'stderr_only': True,
-            'triplet_only': False,
-            'natural_language': True,
-            'stderr_first': True,
-            'with_bug_code': False,
-            'filter_out': filter_out,
-            'small_experiment': True,
-            'fault_localization': True,
-            'kg': False,
-            'classifier': False
-        }
-    elif setting_name == 'stderr+fl+kg+conversation':
+    elif setting_name == 'DSrepair':
         option = {
             'code_search': False,
             'conversation': True,
@@ -58,7 +41,7 @@ def load_option(setting_name, model):
             'kg': True,
             'classifier': False
         }
-    elif setting_name == 'simple_feedback+conversation':
+    elif setting_name == 'Debugging_S':
         option = {
             'simple_feedback': True,
             'code_search': False,
@@ -76,7 +59,7 @@ def load_option(setting_name, model):
             'kg': False,
             'classifier': False
         }
-    elif setting_name == 'stderr+conversation':
+    elif setting_name == 'Chat_Repair':
         option = {
             'code_search': False,
             'conversation': True,
@@ -93,7 +76,7 @@ def load_option(setting_name, model):
             'kg': False,
             'classifier': False
         }
-    elif setting_name == 'explanation+conversation':
+    elif setting_name == 'Self_Repair':
         option = {
             'explanation': True,
             'code_search': False,
@@ -111,7 +94,7 @@ def load_option(setting_name, model):
             'kg': False,
             'classifier': False
         }
-    elif setting_name == 'line_explanation+conversation':
+    elif setting_name == 'Debugging_S':
         option = {
             'line_explanation': True,
             'code_search': False,
@@ -129,25 +112,7 @@ def load_option(setting_name, model):
             'kg': False,
             'classifier': False
         }
-    elif setting_name == 'trace+conversation':
-        option = {
-            'trace': True,
-            'code_search': False,
-            'conversation': True,
-            'baseline': False,
-            'model': model,
-            'stderr_only': False,
-            'triplet_only': False,
-            'natural_language': False,
-            'stderr_first': False,
-            'with_bug_code': False,
-            'filter_out': filter_out,
-            'small_experiment': False,
-            'fault_localization': False,
-            'kg': False,
-            'classifier': False
-        }
-    elif setting_name == 'stderr+fl+plain_text+conversation':
+    elif setting_name == 'Plain_Text':
         option = {
             'code_search': False,
             'conversation': True,
@@ -178,12 +143,11 @@ def code_repair_KG(test_res_list, option_name, model='gpt-3.5-turbo'):
         if not os.path.exists(tmp_file):
             with open(tmp_file, 'w') as f:
                 for res in test_res_list:
-                    # whole prompt as query
                     new_res = query_type_enrich_res(res, option, ds1000)
                     f.write(json.dumps(new_res)+'\n')
 
         if option['conversation']:
-            with open('intermediate_result_conversation/query2code.txt_initial', 'r') as f:
+            with open('experiment_result/query2code.txt_initial', 'r') as f:
                 for line in f.readlines():
                     content = json.loads(line)
                     search_res_dic[content['pid']] = {
@@ -232,5 +196,4 @@ if __name__ == "__main__":
     # model = 'codestral-latest'
     # model = 'deepseek-coder'
     model = 'gpt-3.5-turbo'
-    # a = code_repair_KG(error_res_list, 'line_explanation+conversation', model)
-    a = code_repair_KG(error_res_list, 'stderr+fl+kg+conversation', model)
+    a = code_repair_KG(error_res_list, 'Debugging_S', model)

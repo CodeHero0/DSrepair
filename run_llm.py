@@ -19,7 +19,7 @@ def run_conversation(test_res_list, ds1000, option, search_res_dic, setting):
             id_prompt_list = []
         else:
             id_prompt_list = enrich_prompt_for_error_code(test_res_list, ds1000, i, search_res_dic, option, setting)
-        return id_prompt_list
+        # return id_prompt_list
 
         response_list, file_path, Done_flag = use_gpt_model_repair(id_prompt_list, option, store_file_name_suffix, setting, i)
         # test the response
@@ -108,12 +108,6 @@ def use_gpt_model_repair(id_prompt_list, option, store_file_name_suffix, setting
                     f.write(json.dumps(res_list))
             result_list.append(res_list)
             # run_stderr = run_runability_test(res_list, ds1000)
-
-            # count = 0
-            # for item in run_stderr:
-            #     if item['AST_check'] and item['run_check']:
-            #         count += 1
-            # result_list.append(count)
     return result_list
 
 def run_ChatGPT(data_dic, option, setting):

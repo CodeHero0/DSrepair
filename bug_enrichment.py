@@ -93,7 +93,6 @@ def execute_and_explain(node, global_dict, result_dict, pid=0, level=0, print_fl
                 }
                 return
             else:
-                # TODO
                 pass
             # dims
             for n in node.dims:
@@ -114,7 +113,6 @@ def execute_and_explain(node, global_dict, result_dict, pid=0, level=0, print_fl
                 }
                 return
             else:
-                # TODO
                 pass
         elif isinstance(node, ast.For):
             if print_flag:
@@ -129,7 +127,6 @@ def execute_and_explain(node, global_dict, result_dict, pid=0, level=0, print_fl
                 }
                 return
             else:
-                # TODO
                 pass
         elif isinstance(node, ast.BinOp):
             if print_flag:
@@ -165,22 +162,6 @@ def execute_and_explain(node, global_dict, result_dict, pid=0, level=0, print_fl
         elif isinstance(node, ast.Name):
             if print_flag:
                 print(indent + f"Variable Name: {node.id}")
-            # if node.id in global_dict:
-            #     pass
-            # else:
-            #     pass
-                # globals_dict[node.id] = ''
-            # return globals_dict[node.id]
-        # elif isinstance(node, ast.UnaryOp):
-        #     print(indent + 'UnaryOp:' + ast.unparse(node))
-        #     if isinstance(node.op, ast.USub):
-        #         pass
-        #     elif isinstance(node.op, ast.UAdd):
-        #         pass
-        #     execute_and_explain(node.operand, global_dict, result_dict, pid, level + 1)
-        # elif isinstance(node, ast.Attribute):
-        #     print(indent + 'Attribute:' + ast.unparse(node))
-        #     execute_and_explain(node.value, global_dict, result_dict, pid, level + 1)
     except:
         pass
 
@@ -189,14 +170,6 @@ def execute_and_explain(node, global_dict, result_dict, pid=0, level=0, print_fl
 
 def get_bug_info(pid, generated_code):
     # load test case and global dict
-    # if pid in global_dict_dict:
-    #     global_dict = global_dict_dict[pid]
-    # else:
-    #     global_dict = {'np': np}
-    # if pid in test_cases_dict:
-    #     test_case = test_cases_dict[pid]
-    # else:
-    #     test_case = {}
     ds1000 = [json.loads(l) for l in gzip.open("dataset/ds1000_new.jsonl.gz", "rt").readlines()]
     test_case_result = code_context_2_testcase(pid, ds1000[pid])
     if test_case_result:
@@ -234,10 +207,8 @@ def get_bug_info(pid, generated_code):
         else:
             if 'error' in global_dict:
                 pass
-                # print(global_dict['error'])
     except Exception as e:
         pass
-        # print(e)
     if '__builtins__' in global_dict:
         global_dict.pop('__builtins__')
     res = {

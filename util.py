@@ -411,51 +411,18 @@ def get_data_from_codebase(idx):
 def filter_error_problem(test_res_list, ds1000, small_batch=False):
     res_list = []
     library_dic = {}
-    past_unpass_list = []
-    with open(
-            'intermediate_result_conversation/stderr+kg+fl+conversation/all_0/repair_test/ds1000_model_gpt-3.5-turbo_fl_kg.json_0') as f:
-        for line in f.readlines():
-            content_old = json.loads(line)
-            if content_old['returncode'] != 0:
-                past_unpass_list.append(content_old['pid'])
     for i, content in enumerate(test_res_list):
-        if small_batch:
-            # if content['pid'] in [214]:
-            #     res_list.append(content)
-            if content['returncode'] != 0 and ds1000[content['pid']]['metadata']['library'].lower() == 'numpy':
-                error_info_dic = extract_entity_from_std_err(content['stderr'])
-                # 1. localize the error line
-                error_line = error_line_localization(ds1000[content['pid']]['code_context'], content['generated_code'], error_info_dic)
-                # 2. check whether it is related with library
-                if error_line:
-                    content['error_line'] = error_line
-                    content['error_line'] = error_line
-                else:
-                    content['error_line'] = content['generated_code']
-
-                if ds1000[content['pid']]['metadata']['library'].lower() not in library_dic:
-                    if content['pid'] in past_unpass_list:
-                        library_dic[ds1000[content['pid']]['metadata']['library'].lower()] = [content['pid']]
-                        res_list.append(content)
-                else:
-                    # if len(library_dic[ds1000[content['pid']]['metadata']['library'].lower()]) < 10:
-                    if content['pid'] in past_unpass_list:
-                        library_dic[ds1000[content['pid']]['metadata']['library'].lower()].append(content['pid'])
-                        res_list.append(content)
-
-        else:
-        # if content['returncode'] != 0 and ds1000[content['pid']]['metadata']['library'].lower() == library:
-            if content['returncode'] != 0:
-                error_info_dic = extract_entity_from_std_err(content['stderr'])
-                # 1. localize the error line
-                error_line = error_line_localization(ds1000[content['pid']]['code_context'], content['generated_code'], error_info_dic)
-                # 2. check whether it is related with library
-                if error_line:
-                    content['error_line'] = error_line
-                    content['error_line'] = error_line
-                else:
-                    content['error_line'] = content['generated_code']
-                res_list.append(content)
+        if content['returncode'] != 0:
+            error_info_dic = extract_entity_from_std_err(content['stderr'])
+            # 1. localize the error line
+            error_line = error_line_localization(ds1000[content['pid']]['code_context'], content['generated_code'], error_info_dic)
+            # 2. check whether it is related with library
+            if error_line:
+                content['error_line'] = error_line
+                content['error_line'] = error_line
+            else:
+                content['error_line'] = content['generated_code']
+            res_list.append(content)
     return res_list
 
 
