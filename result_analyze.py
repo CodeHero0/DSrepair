@@ -7,7 +7,6 @@ import matplotlib.ticker as mtick
 from matplotlib.lines import Line2D
 import upsetplot
 import pandas as pd
-import venn
 import numpy as np
 
 # you have to load the experiment result before running the code
