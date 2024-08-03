@@ -60,7 +60,7 @@ We use `code_repair.py` to repair the buggy code with our DSrepair approach.
 Inside the file, you can change the prompt engineering strategies by modifying the last line of the code.
 Our code repair supports the following options: 'Code_Search', 'Chat_Repair', 'Self_Repair', 'Debugging_S', 'Debugging_E', and 'DSrepair'.
 
-'Chat_Repair', 'Self_Repair', 'Debugging_S', and `Debugging_E' are fully LLM-based code repairs. Among them, 
+'Chat_Repair', 'Self_Repair', 'Debugging_S', and `Debugging_E' are fully LLM-based code repairs.
 'Code_Search' needs to leverage Code Search in the code database.
 'DSrepair' needs to leverage the DS-KG for knowledge retrieval.
 
