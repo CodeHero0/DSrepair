@@ -3,8 +3,31 @@
 ## Datasets
 [DS-1000](https://github.com/xlang-ai/DS-1000) 
 
+You can download the DS-1000 dataset from [huggingface](https://huggingface.co/datasets/xlangai/DS-1000).
+For the details of this dataset, you can see their [github page](https://github.com/xlang-ai/DS-1000)
+
 ## Knowledge Graph Server
 [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) 
 
+We use the Fuseki server to assist our triple storage and retrieval with KG.
+Go to the webpage, you can download the jena-fuseki-server with different version.
+In our work, we use the latest server.
+
 ## Code
-Our experiments mainly contain the following scripts:
+Our experiments mainly contain the following main files:
+
+### 1. Code Generation
+We use `code_generate.py` to generate the initial response from LLM, and store them into JSON files in `.\intermediat_result\first_test`.
+This folder contains an example intermediate_result after the test.
+
+### 2. Code Test
+We use `code_test.py` to test the generated code with the test cases given in the dataset.
+
+### 3. Code Repair
+We use `code_repair.py` to repair the buggy code with our DSrepair approach.
+Inside the file, you can change the prompt engineering strategies by modifying the last line of the code.
+Our code repair supports the following options: 'Code_Search', 'Chat_Repair', 'Self_Repair', `Debugging_S`, `Debugging_E`, and `DSrepair`.
+
+`Chat_Repair`, `Self_Repair`, `Debugging_S`, and `Debugging_E` are fully LLM-based code repairs. Among them, 
+`Code_Search` needs to leverage Code Search in the code database.
+`DSrepair` needs to 
