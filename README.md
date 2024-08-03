@@ -7,7 +7,7 @@ For the details of this dataset, you can see their [github page](https://github.
 
 ## API documents
 
-The online document versions of each library are shown as follows:
+The online document versions of each library we used in this study are shown as follows:
 - [Numpy](https://numpy.org/doc/): 1.26
 - [Pandas](https://pandas.pydata.org/pandas-docs/stable/): 2.2.0
 - [SciPy](https://docs.scipy.org/doc/scipy/index.html): 1.12.0
@@ -20,8 +20,8 @@ The online document versions of each library are shown as follows:
 ## Knowledge Graph Server
 [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) 
 
-We use the Fuseki server to assist our triple storage and retrieval with KG.
-Go to the webpage, you can download the jena-fuseki-server with different version.
+We use the Fuseki server to assist with triple storage and retrieval with KG.
+Go to the webpage, you can download the jena-fuseki-server with different versions.
 In our work, we use the latest server.
 
 ## Code
