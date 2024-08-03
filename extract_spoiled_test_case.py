@@ -60,7 +60,6 @@ def test_code_standalone():
 
 
 tf_list = [680, 681, 688, 689, 690, 691, 692, 693, 698, 699, 700, 702, 703, 704, 705]
-# new_ds1000 = []
 def use_extracted_function(func_name, local_namespace, *args):
     library_str = ''
     for key in local_namespace:
