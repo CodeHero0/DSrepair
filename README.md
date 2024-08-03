@@ -69,5 +69,13 @@ For code generation and code repair, we need to leverage LLM. Therefore, before 
 - [Mistral AI](https://mistral.ai/)
 
 ## Results
-Our experiment results are stored in folder `experiment_result`
+Our experiment results are stored in the folder `experiment_result`. There are different categories corresponding to different prompt engineering strategies.
+
+Each specific result contains two files, one is the JSON file (e.g.`experiment_result/DSrepair/gpt_all/ds1000_model_gpt-3.5-turbo_fl_kg.json_0`) recording the response from LLMs; the other one inside folder `repair_test/' recording the evaluation result after testing from the test cases.
+
+For the identical prompt, we ran the experiment three times to mitigate the inherent randomness of LLMs.
+
+## Prompt
+
+The detail of the prompt design can be found in `enrich_prompt.py`, and the example of the prompt can be found in `experiment_result`.
 
