@@ -22,23 +22,49 @@ The online document versions of each library we used in this study are shown as 
 
 We use the Fuseki server to assist with triple storage and retrieval with KG.
 Go to the webpage, you can download the jena-fuseki-server with different versions.
-In our work, we use the latest server.
+In our work, we use the latest version.
+
+## Tools
+
+### Code Search
+
+We use [Lucene](https://lucene.apache.org/) to support our code search with code base PyTorrent, which can be downloaded from [here](https://zenodo.org/records/4546290).
+The code of the code search is shown in the folder `code_search_lucene`.
+Due to the insufficient support of Lucene in Python, we provide the code search logic written in Java.
+
+### Knowledge Retrieval
+
+We design an ontology for our DS-KG (Data Science Knowledge Graph) in `knowledge_graph/ontology.ttl`.
+The code of how to construct DS-KG for different libraries is shown in `knowledge_graph/kg_construction_*.py`
+All the `knowledge_graph/kg_construction_*.py` is powered by `kg_api.py`, which requires the user to set up the Fuseki server first.
+The overall DS-KG is stored in `knowledge_graph/DS-KG.ttl`.
+
+### Plain Text Search
+
+We collect all the plain text content for all online API documents and store them in `knowledge_graph/plain_text.json`.
+
 
 ## Code
 Our experiments mainly contain the following main files:
 
-### 1. Code Generation
-We use `code_generate.py` to generate the initial response from LLM, and store them into JSON files in `.\intermediat_result\first_test`.
+### Code Generation
+We use `code_generate.py` to generate the initial response from LLM, and store them into JSON files in `./intermediat_result/first_test`.
 This folder contains an example intermediate_result after the test.
 
-### 2. Code Test
+### Code Test
 We use `code_test.py` to test the generated code with the test cases given in the dataset.
 
-### 3. Code Repair
+### Code Repair
 We use `code_repair.py` to repair the buggy code with our DSrepair approach.
 Inside the file, you can change the prompt engineering strategies by modifying the last line of the code.
 Our code repair supports the following options: 'Code_Search', 'Chat_Repair', 'Self_Repair', 'Debugging_S', 'Debugging_E', and 'DSrepair'.
 
 'Chat_Repair', 'Self_Repair', 'Debugging_S', and `Debugging_E' are fully LLM-based code repairs. Among them, 
 'Code_Search' needs to leverage Code Search in the code database.
-'DSrepair' needs to 
+'DSrepair' needs to leverage the DS-KG for knowledge retrieval.
+
+For code generation and code repair, we need to leverage LLM. Therefore, before running the code, please make sure to fill in the KEY of different LLMs in folder `openai_info/`. The KEYs can be generated from their websites:
+- [OpenAI](https://platform.openai.com/docs/models)
+- [DeepSeek](https://www.deepseek.com/)
+- [Mistral AI](https://mistral.ai/)
+
