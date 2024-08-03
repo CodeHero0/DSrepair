@@ -3,5 +3,8 @@
 ## Datasets
 [DS-1000](https://github.com/xlang-ai/DS-1000) 
 
+## Knowledge Graph Server
+[Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) 
+
 ## Code
 Our experiments mainly contain the following scripts:
