@@ -10,7 +10,7 @@ kg4cg:   rdf:type owl:Ontology ;
     dc:title "kg4cg:"@en; 
     dc:description "Ontology for python API library"@en; 
     owl:versionInfo "1.0"@en;
-    dc:creator "Shuyin Ouyang", "Xin Fan Guo" . 
+    dc:creator "" .
 
 # CLASSES
 kg4cg:Library rdf:type owl:Class ;

@@ -4,7 +4,6 @@ import os
 from SPARQLWrapper import SPARQLWrapper, QueryResult, TURTLE, JSON
 import re
 
-
 class KgAPI:
     # Public static function do not modify at runtime
     _LOG_PATH = os.getcwd() + "/" + "kg_api.log"

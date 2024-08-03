@@ -22,10 +22,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Hello world!
- *
- */
+
 public class CodeSearch
 {
     public static String escapeQueryChars(String s) {
@@ -72,21 +69,6 @@ public class CodeSearch
             Document doc = new Document();
             doc.add(new IntField("idx", rs.getInt("idx"), Field.Store.YES));
             doc.add(new StringField("repo", rs.getString("repo"), Field.Store.YES));
-//            if (option.equals("all2code")){
-//                doc.add(new TextField("code_tokens", rs.getString("code_tokens"), Field.Store.YES));
-//            } else if (option.equals("code2code")) {
-//                doc.add(new TextField("code_tokens", rs.getString("code_tokens"), Field.Store.YES));
-//            } else if (option.equals("text2text")) {
-//                doc.add(new TextField("modified_comment", rs.getString("modified_comment"), Field.Store.YES));
-//            }
-//            else if (option.equals("text2code")) {
-//                doc.add(new TextField("code_tokens", rs.getString("code_tokens"), Field.Store.YES));
-//            }
-//            else if (option.equals("error2code")) {
-//                doc.add(new TextField("code_tokens", rs.getString("code_tokens"), Field.Store.YES));
-//            }
-//            else{
-//            }
             doc.add(new TextField("code", rs.getString("code"), Field.Store.YES));
             doc.add(new TextField("code_tokens", rs.getString("code_tokens"), Field.Store.YES));
             doc.add(new TextField("comment", rs.getString("comment"), Field.Store.YES));
@@ -158,13 +140,6 @@ public class CodeSearch
             String library = "";
             QueryParser parser = new QueryParser(target_field, analyzer);
             Query query = parser.parse(escapeQueryChars(prompt));
-//            if (jsonObject.has("metadata")) {
-////                System.out.println("111111");
-//                library = jsonObject.getJSONObject("metadata").getString("library");
-//            }
-//            QueryParser parser = new QueryParser("repo", analyzer);
-////            QueryParser parser = new QueryParser(target_field, analyzer);
-//            Query query = parser.parse(library);
 
             IndexReader ireader = DirectoryReader.open(index);
             IndexSearcher isearcher = new IndexSearcher(ireader);
@@ -175,7 +150,7 @@ public class CodeSearch
     }
 
     public static void main( String[] args ) throws IOException, SQLException, ParseException {
-        // all2code, code2code, text2text, text2code, error2code, query2code
+
         String option = "query2code";
         Boolean repo_flag = false;
         String order = "initial";
@@ -183,16 +158,15 @@ public class CodeSearch
         String target_field = initialize_target_field(option);
 
         Analyzer analyzer = new StandardAnalyzer();
-//        Path indexPath = Files.createTempDirectory("tempIndex");
+
         Directory index = FSDirectory.open(Paths.get("index"));
-//        Directory index = FSDirectory.open(indexPath);
+
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         System.out.println("Indexing Done!");
 
-//        write_index(index, config);
-//        int i = 0;
+
         BufferedReader br = new BufferedReader(new FileReader("error_res_list.json_" + order));
-//                "/home/shuyinouyang/research/pythonProject/kg4cg/intermediate_result/first_test/enriched_ds1000_t_0.json"));
+
 
         TopDocs results;
         String line;
@@ -204,7 +178,7 @@ public class CodeSearch
             String prompt = "";
             Integer pid = jsonObject.getInt("pid");
             String library = "";
-//            String library = jsonObject.getJSONObject("metadata").getString("library");
+
 
 
             if (option.equals("all2code")) {
@@ -263,75 +237,6 @@ public class CodeSearch
             } else {
                 prompt = jsonObject.getString("generated_code");
             }
-
-//            String library = "";
-//            QueryParser parser = new QueryParser(target_field, analyzer);
-//            Query query = parser.parse(escapeQueryChars(prompt));
-//            IndexReader ireader = DirectoryReader.open(index);
-//            IndexSearcher isearcher = new IndexSearcher(ireader);
-//            if (jsonObject.has("metadata")) {
-////                System.out.println("111111");
-//                library = jsonObject.getJSONObject("metadata").getString("library");
-//            }
-//            QueryParser parser = new QueryParser("repo", analyzer);
-////            QueryParser parser = new QueryParser(target_field, analyzer);
-//            Query query = parser.parse(library);
-
-
-
-
-//            List<JSONObject> jsonList = new ArrayList<>();
-//            if (prompt.isEmpty()){
-//
-//            } else{
-//                String library = "";
-//                QueryParser parser = new QueryParser(target_field, analyzer);
-//                Query query = parser.parse(escapeQueryChars(prompt));
-////            if (jsonObject.has("metadata")) {
-//////                System.out.println("111111");
-////                library = jsonObject.getJSONObject("metadata").getString("library");
-////            }
-////            QueryParser parser = new QueryParser("repo", analyzer);
-//////            QueryParser parser = new QueryParser(target_field, analyzer);
-////            Query query = parser.parse(library);
-//
-//                IndexReader ireader = DirectoryReader.open(index);
-//                IndexSearcher isearcher = new IndexSearcher(ireader);
-//                TopDocs results;
-//
-//                if (repo_flag) {
-//
-//                    if (jsonObject.has("metadata")) {
-////                System.out.println("111111");
-//                        library = jsonObject.getJSONObject("metadata").getString("library");
-//                    }
-////                Query main_query = new Parser(new Term(target_field, escapeQueryChars(prompt)));
-//                    Query filter = new TermQuery(new Term("repo", library));
-//                    BooleanQuery.Builder builder = new BooleanQuery.Builder();
-//                    builder.add(query, BooleanClause.Occur.MUST);
-//                    builder.add(filter, BooleanClause.Occur.FILTER);
-//                    BooleanQuery combinedQuery = builder.build();
-//                    System.out.println(combinedQuery);
-//                    results = isearcher.search(combinedQuery, 10);
-//                } else {
-//                    results = isearcher.search(query, 10);
-//                }
-//
-//                System.out.println("index: " + pid + ", Library: " + library);
-//                System.out.println("Total Hits: " + results.totalHits);
-//
-//                for (ScoreDoc scoreDoc : results.scoreDocs) {
-//                    Document doc = isearcher.doc(scoreDoc.doc);
-//
-//                    JSONObject tmp_JsonObject = new JSONObject();
-//                    tmp_JsonObject.put("idx", Integer.valueOf(doc.get("idx")));
-//                    tmp_JsonObject.put("score", scoreDoc.score);
-//
-//                    jsonList.add(tmp_JsonObject);
-//                }
-//            }
-//            store_result(jsonList, pid, prompt, repo_flag, option, order);
-
         }
 
     }

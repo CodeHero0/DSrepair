@@ -196,4 +196,4 @@ if __name__ == "__main__":
     # model = 'codestral-latest'
     # model = 'deepseek-coder'
     model = 'gpt-3.5-turbo'
-    a = code_repair_KG(error_res_list, 'Debugging_S', model)
+    # a = code_repair_KG(error_res_list, 'Debugging_S', model)
