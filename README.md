@@ -2,9 +2,20 @@
 
 ## Datasets
 [DS-1000](https://github.com/xlang-ai/DS-1000) 
-
 You can download the DS-1000 dataset from [huggingface](https://huggingface.co/datasets/xlangai/DS-1000).
 For the details of this dataset, you can see their [github page](https://github.com/xlang-ai/DS-1000)
+
+## API documents
+
+The online document versions of each library are shown as follows:
+- [Numpy](https://numpy.org/doc/): 1.26
+- [Pandas](https://pandas.pydata.org/pandas-docs/stable/): 2.2.0
+- [SciPy](https://docs.scipy.org/doc/scipy/index.html): 1.12.0
+- [Scikit-learn](https://scikit-learn.org/dev/versions.html): 1.4.1
+- [Matplotlib](https://github.com/matplotlib/matplotlib/tree/main/doc): 3.8.2
+- [PyTorch](https://github.com/pytorch/pytorch/tree/main/docs): 2.2.0
+- [TensorFlow](https://github.com/tensorflow/tensorflow): 2.16.0
+
 
 ## Knowledge Graph Server
 [Apache Jena Fuseki](https://jena.apache.org/documentation/fuseki2/) 
@@ -26,8 +37,8 @@ We use `code_test.py` to test the generated code with the test cases given in th
 ### 3. Code Repair
 We use `code_repair.py` to repair the buggy code with our DSrepair approach.
 Inside the file, you can change the prompt engineering strategies by modifying the last line of the code.
-Our code repair supports the following options: 'Code_Search', 'Chat_Repair', 'Self_Repair', `Debugging_S`, `Debugging_E`, and `DSrepair`.
+Our code repair supports the following options: 'Code_Search', 'Chat_Repair', 'Self_Repair', 'Debugging_S', 'Debugging_E', and 'DSrepair'.
 
-`Chat_Repair`, `Self_Repair`, `Debugging_S`, and `Debugging_E` are fully LLM-based code repairs. Among them, 
-`Code_Search` needs to leverage Code Search in the code database.
-`DSrepair` needs to 
+'Chat_Repair', 'Self_Repair', 'Debugging_S', and `Debugging_E' are fully LLM-based code repairs. Among them, 
+'Code_Search' needs to leverage Code Search in the code database.
+'DSrepair' needs to 
