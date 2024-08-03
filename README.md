@@ -68,3 +68,6 @@ For code generation and code repair, we need to leverage LLM. Therefore, before 
 - [DeepSeek](https://www.deepseek.com/)
 - [Mistral AI](https://mistral.ai/)
 
+## Results
+Our experiment results are stored in folder `experiment_result`
+
