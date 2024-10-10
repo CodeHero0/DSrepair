@@ -1,0 +1,129 @@
+@prefix kg4cg: <http://w3id.org/kg4cg/vocab#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/#> .
+
+# Declare headers 
+kg4cg:   rdf:type owl:Ontology ;
+    dc:title "kg4cg:"@en; 
+    dc:description "Ontology for python API library"@en; 
+    owl:versionInfo "1.0"@en;
+    dc:creator "" .
+
+# CLASSES
+kg4cg:Library rdf:type owl:Class ;
+    rdfs:comment "Represents a python library"@en ;
+    rdfs:label "Library"@en . 
+
+kg4cg:Module rdf:type owl:Class ;
+    rdfs:comment "Represents a module a library"@en ;
+    rdfs:label "Module"@en . 
+
+kg4cg:Function rdf:type owl:Class ;
+    rdfs:comment "Represents a function within a class"@en ;
+    rdfs:label "Function"@en .
+
+kg4cg:Parameter rdf:type owl:Class ;
+    rdfs:comment "Represents a parameter of a function"@en ;
+    rdfs:label "Parameter"@en .
+
+kg4cg:Return rdf:type owl:Class ;
+    rdfs:comment "Represents a return type of a function"@en ;
+    rdfs:label "Return"@en .
+
+# Properties
+kg4cg:hasName rdf:type owl:DatatypeProperty, owl:FunctionalProperty; 
+    rdfs:domain kg4cg:Library ;
+    rdfs:domain kg4cg:Module ;
+    rdfs:domain kg4cg:Function ;
+    rdfs:domain kg4cg:Parameter ;
+    rdfs:domain kg4cg:Return ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasName"@en ;
+    rdfs:comment "A name of an object instance"@en .
+
+kg4cg:belongsToLibrary rdf:type owl:ObjectProperty, owl:FunctionalProperty, owl:TransitiveProperty ;
+    rdfs:domain kg4cg:Module ;
+    rdfs:domain kg4cg:Function ;
+    rdfs:range kg4cg:Library ;
+    rdfs:label "belongsToLibrary"@en ;
+    rdfs:comment "Object instance belongs to a library"@en .
+
+kg4cg:hasModule rdf:type owl:ObjectProperty;
+    rdfs:domain kg4cg:Library ;
+    rdfs:range kg4cg:Module ;
+    rdfs:label "hasModule(1..*)"@en ;
+    rdfs:comment "Library has a module"@en .
+
+
+kg4cg:hasFunction rdf:type owl:ObjectProperty;
+    rdfs:domain kg4cg:Module ;
+    rdfs:range kg4cg:Function ;
+    rdfs:label "hasFunction(1..*)"@en ;
+    rdfs:comment "Indicating that an object instance has a function"@en .
+
+kg4cg:belongsToModule rdf:type owl:ObjectProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:range kg4cg:Module ;
+    rdfs:label "belongsToModule(1..*)"@en ;
+    rdfs:comment "Indicating object instance belongs to a specific module"@en .
+
+kg4cg:hasExplanation rdf:type owl:DatatypeProperty,  owl:FunctionalProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:label "hasExplanation"@en ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A function has a explanation"@en .
+
+kg4cg:hasExpression rdf:type owl:DatatypeProperty,  owl:FunctionalProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:label "hasExpression"@en ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A function has a expression"@en .
+
+kg4cg:hasNote rdf:type owl:DatatypeProperty,  owl:FunctionalProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:label "hasNote"@en ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A function has a note"@en .
+
+kg4cg:raiseException rdf:type owl:DatatypeProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:label "raiseException(0..*)"@en ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Function might raise an exception"@en .
+
+kg4cg:hasParameter rdf:type owl:ObjectProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:range kg4cg:Parameter ;
+    rdfs:label "hasParameter(0..*)"@en ;
+    rdfs:comment "Function has a parameter"@en .
+
+
+kg4cg:hasReturn rdf:type owl:ObjectProperty;
+    rdfs:domain kg4cg:Function ;
+    rdfs:range kg4cg:Return ;
+    rdfs:label "hasReturn(0..*)"@en ;
+    rdfs:comment "Function has a return"@en .
+
+kg4cg:hasPid rdf:type owl:DatatypeProperty, owl:FunctionalProperty;
+    rdfs:domain kg4cg:Parameter ;
+    rdfs:domain kg4cg:Return ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasPid"@en ;
+    rdfs:comment "Indicating the position of a parameter in a function"@en .
+
+kg4cg:hasExplanation rdf:type owl:DatatypeProperty, owl:FunctionalProperty; 
+    rdfs:domain kg4cg:Parameter ;
+    rdfs:domain kg4cg:Return ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasExplanation"@en ;
+    rdfs:comment "Indicating an explanation of a parameter"@en .
+
+kg4cg:hasType rdf:type owl:DatatypeProperty, owl:FunctionalProperty; 
+    rdfs:domain kg4cg:Parameter ;
+    rdfs:domain kg4cg:Return ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasType"@en ;
+    rdfs:comment "Indicating data type of a parameter"@en .
