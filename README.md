@@ -1,5 +1,8 @@
 # Knowledge-Enhanced Program Repair for Data Science Code
 
+## Figures
+We add equivalent Venn diagrams for Figure 5 and Figure 'API_knowledge_example.pdf' under path 'fig/'.
+
 ## Datasets
 [DS-1000](https://github.com/xlang-ai/DS-1000) 
 You can download the DS-1000 dataset from [huggingface](https://huggingface.co/datasets/xlangai/DS-1000).
