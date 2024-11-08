@@ -43,6 +43,17 @@ The code of how to construct DS-KG for different libraries is shown in `knowledg
 All the `knowledge_graph/kg_construction_*.py` is powered by `kg_api.py`, which requires the user to set up the Fuseki server first.
 The overall DS-KG is stored in `knowledge_graph/DS-KG.ttl`.
 
+#### !!!!!!!!!!!!NEW!!!!!!!!!!!!!!!!!!
+In the `knowledge_graph/ontology.ttl`, we mainly defined the following owlClass, namely, Library, Module, Function, Parameter, and Return.
+We also defined some owlObjectProperty, between the owlClass, i.e., 'hasFunction', 'hasParameter', and 'belongsToLibrary'.
+For each API function, we define some owlDatatypeProperty, i.e., 'hasExplanation', 'hasExpression', and 'hasNote', which can cover the majority of information in its corresponding API document's webpage.
+
+The visualization website: [WebVOWL](https://service.tib.eu/webvowl/)
+1. Go the bottom sidebar, select 'Ontology'
+2. In the Custom Ontology, choose 'select ontology file'
+3. Upload the `knowledge_graph/ontology.ttl` file, then you can visualize the ontology.
+
+
 ### Plain Text Search
 
 We collect all the plain text content for all online API documents and store them in `knowledge_graph/plain_text.json`.
