@@ -90,6 +90,12 @@ Each specific result contains two files, one is the JSON file (e.g.`experiment_r
 
 For the identical prompt, we ran the experiment three times to mitigate the inherent randomness of LLMs.
 
+#### !!!!!!!!!!!!NEW!!!!!!!!!!!!!!!!!!
+In the folder `major_revision`, we provide our latest experiment result, with 'GPT-4o-mini'. And we ran the experiment 10 times to mitigate the randomness.
+
+Unfortunately, we left the Deepseek-coder-V2 as three times repeat experiments because their API is no longer available at this moment.
+
+
 ## Prompt
 
 The detail of the prompt design can be found in `enrich_prompt.py`, and the example of the prompt can be found in `experiment_result`.
